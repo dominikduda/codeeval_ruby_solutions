@@ -7,17 +7,21 @@ class ColumnNameConverter
 
   def excel_header
     num = []
-    temp = 0
-    loop do
-      break if @column_number == 0
-      num.unshift(corresponding_letter(@column_number % 26))
-      @column_number /= 26
-      puts @column_number
-    end
+    num.unshift(add_next_digit) until column_number == 0
     num.join
   end
 
   private
+
+  def add_next_digit
+    digit = next_digit
+    @column_number /= 26
+    digit
+  end
+
+  def next_digit
+    corresponding_letter(column_number % 26)
+  end
 
   def corresponding_letter(number)
     (number + 64).chr

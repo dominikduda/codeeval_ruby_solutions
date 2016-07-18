@@ -1,34 +1,50 @@
 class ColumnNameConverter
-  attr_accessor :column_number
+  LETTER_MAP = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.freeze
+
+  attr_accessor :column_number, :header
 
   def initialize(column_number = 1)
     @column_number = column_number
+    @header = ''
   end
 
   def excel_header
-    num = []
-    num.unshift(add_next_digit) until column_number <= 1
-    num.join
+    fill_header
+    header
   end
 
   private
 
+  def fill_header
+    reset_header
+    add_next_digit until column_number == 0
+  end
+
   def add_next_digit
-    digit = next_digit
+    @header.prepend(corresponding_letter(next_digit))
+    decrease_column_number
+  end
+
+  def decrease_column_number
+    remain = remainder
     @column_number /= 26
-    digit
+    @column_number -= 1 if remain == 0
   end
 
   def next_digit
-    last_digit? ? corresponding_letter(column_number) : corresponding_letter(column_number % 26)
+    column_number == 0 ? remainder : remainder - 1
   end
 
-  def last_digit?
-    column_number <= 26
+  def remainder
+    column_number % 26
   end
 
   def corresponding_letter(number)
-    (number + 64).chr
+    LETTER_MAP[number]
+  end
+
+  def reset_header
+    @header = ''
   end
 end
 

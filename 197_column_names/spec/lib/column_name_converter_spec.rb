@@ -1,3 +1,4 @@
+require 'pry'
 require 'column_name_converter'
 
 describe ColumnNameConverter do
@@ -6,10 +7,10 @@ describe ColumnNameConverter do
 
   describe '#excel_header' do
     context 'single-letter column' do
-      let(:input) { 1 }
+      let(:input) { 26 }
 
       it 'returns correct header' do
-        expect(perform).to eq 'A'
+        expect(perform).to eq 'Z'
       end
     end
 

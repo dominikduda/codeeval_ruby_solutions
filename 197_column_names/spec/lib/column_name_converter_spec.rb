@@ -5,7 +5,7 @@ describe ColumnNameConverter do
   let(:perform) { column_name_converter.excel_header }
 
   describe '#excel_header' do
-    context 'first column' do
+    context 'single-letter column' do
       let(:input) { 1 }
 
       it 'returns correct header' do
@@ -13,19 +13,11 @@ describe ColumnNameConverter do
       end
     end
 
-    context 'column in the middle' do
+    context 'multi-letter column' do
       let(:input) { 3702 }
 
       it 'returns correct header' do
         expect(perform).to eq 'ELJ'
-      end
-    end
-
-    context 'last column' do
-      let(:input) { 17_576 }
-
-      it 'returns correct header' do
-        expect(perform).to eq 'ZZZ'
       end
     end
   end

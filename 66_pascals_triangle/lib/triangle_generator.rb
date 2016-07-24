@@ -7,6 +7,7 @@ class TriangleGenerator
   end
 
   def generate
+    raise ArgumentError, 'Depth must be an integer greater than 0' unless depth_valid?
     1.upto(depth) { |level_number| add_level(level_number) }
     @triangle.flatten.join(' ')
   end
@@ -24,5 +25,9 @@ class TriangleGenerator
     end
     level << 1
     @triangle << level
+  end
+
+  def depth_valid?
+    depth >= 1
   end
 end

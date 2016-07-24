@@ -8,7 +8,7 @@ describe TriangleGenerator do
       let(:input) { 0 }
 
       it 'raises an exception' do
-        expect(perform).to raise_error
+        expect { perform }.to raise_error(ArgumentError)
       end
     end
 

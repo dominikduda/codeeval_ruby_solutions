@@ -28,6 +28,6 @@ class TriangleGenerator
   end
 
   def depth_valid?
-    depth >= 1
+    depth >= 1 && depth % 1 == 0
   end
 end

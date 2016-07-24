@@ -12,6 +12,14 @@ describe TriangleGenerator do
       end
     end
 
+    context 'with float passed as argument' do
+      let(:input) { 1.1 }
+
+      it 'raises an exception' do
+        expect { perform }.to raise_error(ArgumentError)
+      end
+    end
+
     context 'with depth 1' do
       let(:input) { 1 }
 

@@ -1,5 +1,3 @@
-require 'pry'
-
 class TriangleGenerator
   attr_accessor :triangle
   attr_reader :depth
@@ -23,11 +21,7 @@ class TriangleGenerator
   private
 
   def add_level(level_number)
-    case level_number
-    when 1 then @triangle << [1] if level_number == 1
-    when 2 then @triangle << [1, 1] if level_number == 2
-    else @triangle << level(level_number)
-    end
+    @triangle << (level_number > 1 ? level(level_number) : [1])
   end
 
   def level(level_number)
@@ -46,9 +40,9 @@ class TriangleGenerator
   end
 end
 
-# input = File.open(ARGV[0]).readlines.map(&:to_i)
-# triangle_generator = TriangleGenerator.new(0)
-# input.each do |integer|
-#   triangle_generator.depth = integer
-#   puts triangle_generator.generate
-# end
+input = File.open(ARGV[0]).readlines.map(&:to_i)
+triangle_generator = TriangleGenerator.new(0)
+input.each do |integer|
+  triangle_generator.depth = integer
+  puts triangle_generator.generate
+end

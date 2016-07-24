@@ -1,4 +1,4 @@
-require 'perform'
+require 'triangle_generator'
 
 describe TriangleGenerator do
   let(:perform) { described_class.new(input).generate }
@@ -24,7 +24,7 @@ describe TriangleGenerator do
       let(:input) { 2 }
 
       it 'returns correct triangle' do
-        expect(perform).to eq '1 1'
+        expect(perform).to eq '1 1 1'
       end
     end
 

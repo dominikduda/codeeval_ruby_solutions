@@ -23,16 +23,22 @@ class TriangleGenerator
   private
 
   def add_level(level_number)
-    @triangle << [1] if level_number == 1
-    @triangle << [1, 1] if level_number == 2
-    return if level_number == 1 || level_number == 2
-    level = []
-    level << 1
-    1.upto(level_number - 2) do |i|
-      level << triangle.last[i] + triangle.last[i - 1]
+    case level_number
+    when 1 then @triangle << [1] if level_number == 1
+    when 2 then @triangle << [1, 1] if level_number == 2
+    else @triangle << level(level_number)
     end
-    level << 1
-    @triangle << level
+  end
+
+  def level(level_number)
+    layer = [1]
+    1.upto(level_number - 2) { |i| layer << last_level_node(i) }
+    layer << 1
+    layer
+  end
+
+  def last_level_node(node_number)
+    triangle.last[node_number] + triangle.last[node_number - 1]
   end
 
   def depth_valid?(depth)

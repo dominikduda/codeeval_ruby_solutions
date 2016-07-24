@@ -1,13 +1,21 @@
+require 'pry'
+
 class TriangleGenerator
-  attr_accessor :depth, :triangle
+  attr_accessor :triangle
+  attr_reader :depth
 
   def initialize(depth)
     @depth = depth
     @triangle = []
   end
 
+  def depth=(argument)
+    raise ArgumentError, 'Depth must be an integer greater than 0' unless depth_valid?(argument)
+    @depth = argument
+  end
+
   def generate
-    raise ArgumentError, 'Depth must be an integer greater than 0' unless depth_valid?
+    @triangle = []
     1.upto(depth) { |level_number| add_level(level_number) }
     @triangle.flatten.join(' ')
   end
@@ -27,7 +35,14 @@ class TriangleGenerator
     @triangle << level
   end
 
-  def depth_valid?
+  def depth_valid?(depth)
     depth >= 1 && depth % 1 == 0
   end
 end
+
+# input = File.open(ARGV[0]).readlines.map(&:to_i)
+# triangle_generator = TriangleGenerator.new(0)
+# input.each do |integer|
+#   triangle_generator.depth = integer
+#   puts triangle_generator.generate
+# end

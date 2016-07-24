@@ -1,7 +1,7 @@
 class TriangleGenerator
   attr_accessor :depth
 
-  def initialize(depth = 0)
+  def initialize(depth)
     @depth = depth
   end
 

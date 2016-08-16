@@ -13,7 +13,7 @@ Object.defineProperty(HighestScoreCalculator.prototype, 'table', {
     }
 });
 
-Object.defineProperty(HighestScoreCalculator.prototype, 'amountOfColumns', {
+Object.defineProperty(HighestScoreCalculator.prototype, 'columnsCount', {
     get: function() {
         return this.table[0].length;
     }
@@ -21,7 +21,7 @@ Object.defineProperty(HighestScoreCalculator.prototype, 'amountOfColumns', {
 
 HighestScoreCalculator.prototype.highestScores = function() {
     var scores = [];
-    for (var i = 0; i < this.amountOfColumns; i++) {
+    for (var i = 0; i < this.columnsCount; i++) {
         scores.push(this._maximumForColumn(i));
     }
     return scores.join(' ');

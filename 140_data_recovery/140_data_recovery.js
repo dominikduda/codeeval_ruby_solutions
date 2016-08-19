@@ -30,7 +30,8 @@ DataRecoverer.prototype._missingIndex = function(indexes) {
 DataRecoverer.prototype.reconstructedSentence = function() {
     var sentence = [];
     for (var i = 0; i < this.indexes.length; i++) {
-        sentence[this.indexes[i] - 1] = this.words[i];
+        var wordIndex = this.indexes[i] - 1;
+        sentence[wordIndex] = this.words[i];
     }
     return sentence.join(' ');
 };
